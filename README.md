@@ -1,4 +1,3 @@
-# Javad Khataei
 # 💫 About Me:
 🚀 Data Scientist specializing in Large Language Models (LLMs) | Expert in MLOps & Azure
 
