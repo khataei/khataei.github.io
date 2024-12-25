@@ -1,7 +1,5 @@
 [Home](/) | [Blog](/blog) | [About](/about) | [Projects](/projects)
-<div align="center">
-  <img height="200" src="https://media.licdn.com/dms/image/v2/C4E03AQHhQc5hTFwB0w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1657316273504?e=1740614400&v=beta&t=XKur_aD4v00xGSVnX1Op2U8hctp1vBwbXRV0O4wgeXk"  />
-</div>
+
 
 # 💫 About Me:
 🚀 Data Scientist specializing in Large Language Models (LLMs) | Expert in MLOps & Azure
