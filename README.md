@@ -2,9 +2,12 @@
 
 
 # 💫 About Me:
-🚀 Data Scientist specializing in Large Language Models (LLMs) | Expert in MLOps & Azure
+🚀 Senior Data Scientist
 
-Experienced Data Scientist with deep expertise in LLM fine-tuning, RAG implementations, and natural language processing. Leading R&D initiatives in information extraction and AI-driven solutions at CARFAX Canada. Skilled in Python, Azure ML, and end-to-end machine learning pipelines.
+Senior Data Scientist with 6+ years of experience delivering scalable machine learning
+solutions, including advanced regression models and generative AI systems. Proven
+leader in aligning technical innovation with business strategy to drive monetization and
+user value.
 
 ## 🌐 Socials:
 <div align="left">
