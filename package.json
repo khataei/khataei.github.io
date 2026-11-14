@@ -1,0 +1,15 @@
+{
+  "name": "javad-khataei-personal-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "refresh:github": "node scripts/update-github-stats.mjs",
+    "prebuild": "npm run refresh:github",
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1"
+  },
+  "dependencies": { "astro": "7.4.12" }
+}

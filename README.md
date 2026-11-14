@@ -1,57 +1,69 @@
-[Home](/) | [Blog](/blog) | [About](/about) | [Projects](/projects)
+# Javad Khataei — personal site
 
+Static Astro site prepared for `https://khataei.github.io`. English, light and dark modes, no photo, no email, no tracking.
 
-# 💫 About Me:
-🚀 Senior Data Scientist
+## Run locally
 
-Senior Data Scientist with 6+ years of experience delivering scalable machine learning
-solutions, including advanced regression models and generative AI systems. Proven
-leader in aligning technical innovation with business strategy to drive monetization and
-user value.
+Requires Node 24 or newer. With nvm: `nvm use`.
 
-## 🌐 Socials:
-<div align="left">
-  <a href="https://www.linkedin.com/in/khataei/" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="linkedin logo"  />
-  </a>
-</div>
+```sh
+npm ci
+npm run dev
+```
 
-## 💻 Tech Stack:
-<div align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" height="30" alt="jupyter logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="30" alt="python logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" height="30" alt="pytorch logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" height="30" alt="numpy logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" height="30" alt="pandas logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" height="30" alt="tensorflow logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" height="30" alt="azure logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg" height="30" alt="neo4j logo"  />
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="30" alt="mysql logo"  />
-</div>
+Open the Local URL printed by Astro. `npm run build` generates the static site in `dist/`. `npm run preview` serves that build.
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![R](https://img.shields.io/badge/r-%23276DC3.svg?style=for-the-badge&logo=r&logoColor=white) ![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white) ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+## Content
 
-# 🚀 Experience
-- Lead R&D efforts in LLM fine-tuning and RAG implementations at CARFAX Canada
-- Developed natural language interfaces for SQL queries
-- Improved vehicle history valuation accuracy from 50% to 80%
-- Spearheaded architectural transition to Azure ML Studio
+- Home: `src/pages/index.astro`
+- About and education: `src/pages/about.astro`
+- Experience: `src/pages/work.astro`
+- Publication, open source, and projects: `src/pages/research.astro`
+- Blog listing: `src/pages/writing/index.astro`
+- Colors, typography, spacing: `src/styles/global.css`
 
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=khataei&theme=dark&hide_border=true&include_all_commits=true&count_private=false)
-![](https://github-readme-streak-stats.herokuapp.com/?user=khataei&theme=dark&hide_border=true)
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=khataei&theme=dark&hide_border=true&include_all_commits=true&count_private=false&layout=compact)
+The valuation bullet omits team size and unqualified numerical accuracy. The current CRAN entry lists Javad as co-author and Daniel Fuller as maintainer; the site therefore uses co-author. Introductory certificates and the expired AWS credential are omitted. Source material is in the sibling `linkedin-site-content.md` document.
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=khataei&limit=5&theme=dark&combine_all_yearly_contributions=true)
+## Publish a post
 
+Create `src/pages/writing/your-post-slug.md`:
+
+```md
 ---
-[![](https://visitcount.itsvg.in/api?id=khataei&icon=0&color=0)](https://visitcount.itsvg.in)
+layout: ../../layouts/Post.astro
+title: "Your post title"
+description: "A short summary."
+date: "2026-11-14"
+---
+
+Your post goes here. Use Markdown for headings, links, lists, and code.
+```
+
+The Writing listing, homepage's three latest posts, RSS feed, and sitemap include new posts automatically. Once GitHub Pages is set up, commit the new file to main in GitHub (or push it from your computer) to trigger automatic build and publication. There is no web-based article editor in the current site.
+
+Keep unpublished drafts outside `src/pages/` (for example in `drafts/`): files in `src/pages/` generate public URLs even if a `draft` flag hides them from listings. No invented or sample posts are published.
+
+## Deploy to GitHub Pages
+
+1. Use the existing public repository `khataei/khataei.github.io`.
+2. Push this directory's contents to its `main` branch. Exclude `node_modules`, `.astro`, and `dist` as specified in `.gitignore`.
+3. In repository Settings → Pages, set Source to GitHub Actions.
+4. Run the included deployment workflow, or push to `main`.
+
+The included workflow builds and deploys to Pages. The existing destination repository is https://github.com/khataei/khataei.github.io and the site address is https://khataei.github.io/. If the destination changes, update `astro.config.mjs`, `rss.xml.ts`, `sitemap.xml.ts`, and `public/robots.txt`.
+
+## Future article requests
+
+Give the article to your assistant and ask to publish it on this site. `AGENTS.md` records the content rules, Markdown format, publishing workflow, verification, and the boundary that LinkedIn is managed by Javad himself.
+
+## GitHub activity section
+
+`src/components/GitHubStats.astro` renders a contribution calendar, contribution and streak counts, public repository count, and primary languages. It uses the dated public snapshot in `src/data/github.json`; it needs no visitor-side API calls or third-party image widgets.
+
+`npm run refresh:github` fetches unauthenticated public GitHub profile/repository data and the public contribution calendar. `npm run build` refreshes it automatically through prebuild. If GitHub is temporarily unavailable or the calendar markup changes, the build keeps the previous dated snapshot. Counts update at build time, not on every page view. Language counts are the number of non-fork public repositories by primary language, not measures of proficiency or code volume. Contribution totals match the calendar visible on the public GitHub profile, which may include anonymized private contributions if enabled in GitHub.
+
+Publication was approved on November 14, 2026. The production site uses the GitHub Actions workflow in this repository.
+
+The homepage leads with current vehicle valuation work. The 2022 paper remains on Research. Public integration references and the decision to describe API latency without an unqualified numerical benchmark are documented in `docs/carfax-content-sources.md`.
+
+Google Fonts supplies Instrument Serif and DM Sans; local fallbacks remain usable if font loading is unavailable.

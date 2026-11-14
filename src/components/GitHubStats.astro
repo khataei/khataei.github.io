@@ -1,0 +1,29 @@
+---
+import stats from '../data/github.json';
+const format = (n: number) => n.toLocaleString('en-CA');
+const dateLabel = (d: string) => new Date(d+'T12:00:00Z').toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+const firstDay = new Date(stats.days[0].date+'T12:00:00Z').getUTCDay();
+const cells = [...Array.from({length:firstDay},()=>null), ...stats.days];
+const weeks = Math.ceil(cells.length/7);
+const months = stats.days.filter((day,i)=>i===0 || day.date.slice(5,7)!==stats.days[i-1].date.slice(5,7)).map(day=>({name:new Date(day.date+'T12:00:00Z').toLocaleDateString('en-CA',{month:'short',timeZone:'UTC'}),week:Math.floor((firstDay+stats.days.indexOf(day))/7)}));
+const totalLanguages = stats.languages.reduce((sum,l)=>sum+l.count,0);
+const colors:Record<string,string> = {'Python':'#547f74','Jupyter Notebook':'#b38347','R':'#7c88ad','HTML':'#b87264','C':'#888a79','CSS':'#9580a0','C#':'#6d8d50'};
+---
+<section id="github" class="section github-section" aria-labelledby="github-title">
+  <div class="section-heading"><h2 id="github-title">On GitHub</h2><a href="https://github.com/khataei">@khataei <span aria-hidden="true">↗</span></a></div>
+  <div class="github-metrics">
+    <div><strong>{format(stats.contributions)}</strong><span>Contributions in the last year</span></div>
+    <div><strong>{format(stats.currentStreak)}<small> days</small></strong><span>Current contribution streak</span></div>
+    <div><strong>{format(stats.longestStreak)}<small> days</small></strong><span>Longest streak in this period</span></div>
+    <div><strong>{format(stats.publicRepos)}</strong><span>Public repositories</span></div>
+  </div>
+  <div class="calendar-scroll" tabindex="0" role="region" aria-label="Daily GitHub contributions. Scroll horizontally on smaller screens.">
+    <div class="calendar-months" style={`--weeks:${weeks}`} aria-hidden="true">{months.map(month=><span style={`grid-column:${month.week+1}`}>{month.name}</span>)}</div>
+    <div class="contribution-calendar" style={`--weeks:${weeks}`} role="img" aria-label={`${format(stats.contributions)} contributions from ${dateLabel(stats.days[0].date)} to ${dateLabel(stats.days.at(-1)!.date)}. Darker squares indicate more contributions.`}>
+      {cells.map(day=>day ? <span class="contribution-day" data-level={day.level} title={`${dateLabel(day.date)}: ${format(day.count)} ${day.count===1?'contribution':'contributions'}`} /> : <span class="contribution-day blank" />)}
+    </div>
+  </div>
+  <div class="calendar-caption"><span>{dateLabel(stats.days[0].date)} – {dateLabel(stats.days.at(-1)!.date)}</span><span class="calendar-key">Less {[0,1,2,3,4].map(level=><span class="contribution-day" data-level={level} aria-hidden="true" />)} More</span></div>
+  <div class="github-languages"><div><h3>Languages across public work</h3><p>Primary language by non-fork repository count.</p></div><div><div class="language-bar" aria-hidden="true">{stats.languages.map(language=><span style={`width:${language.count/totalLanguages*100}%;background:${colors[language.name]||'var(--accent)'}`} />)}</div><ul class="language-legend">{stats.languages.map(language=><li><span style={`background:${colors[language.name]||'var(--accent)'}`} aria-hidden="true"/>{language.name}<small>{language.count}</small></li>)}</ul></div></div>
+  <p class="github-updated">As shown on my public GitHub profile · Updated {new Date(stats.updatedAt).toLocaleDateString('en-CA',{year:'numeric',month:'long',day:'numeric',timeZone:'America/Vancouver'})}</p>
+</section>
